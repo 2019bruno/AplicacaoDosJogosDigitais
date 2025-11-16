@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DataRescue – Missão Segurança Digital</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.45;margin:0;padding:0;background:#f5f7fb;color:#0b1320}
+.header{background:#04293a;color:#fff;padding:18px 20px;display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,#0f6b7f,#0b3240);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+.container{max-width:980px;margin:24px auto;background:#fff;border-radius:10px;box-shadow:0 6px 24px rgba(11,19,32,0.08);overflow:hidden}
+.nav{display:flex;gap:6px;padding:12px 16px;border-bottom:1px solid #eef3f8;background:#fbfdff;flex-wrap:wrap}
+.nav button{background:#e6f2f7;border:1px solid #d0e6ef;padding:8px 12px;border-radius:6px;cursor:pointer}
+.content{padding:20px}
+h1,h2,h3{margin:8px 0}
+.chapter{display:none}
+.controls{display:flex;gap:8px;margin-top:14px}
+.btn{background:#0b6b8a;color:#fff;padding:8px 12px;border-radius:6px;border:0;cursor:pointer}
+.secondary{background:#eef6fa;color:#04293a;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}
+.quiz{background:#fbfdff;border:1px solid #eef3f8;padding:14px;border-radius:8px;margin-top:12px}
+.feedback{margin-top:10px;padding:10px;border-radius:6px}
+.correct{background:#e6f9ef;border:1px solid #b8e6c8;color:#056a39}
+.wrong{background:#fff1f2;border:1px solid #f5c2c7;color:#8b1d29}
+.summary{background:#f7f9fc;padding:12px;border-radius:8px;margin-top:12px}
+.footer{padding:14px 16px;border-top:1px solid #eef3f8;background:#fbfdff;text-align:center}
+.small{font-size:0.9em;color:#425057}
+.progress{height:10px;background:#e6f0f4;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress > i{display:block;height:100%;background:linear-gradient(90deg,#0b6b8a,#3aa0c9);width:0%}
+code{background:#f1f5f8;padding:2px 6px;border-radius:4px;font-family:monospace}
+@media (max-width:600px){.container{margin:12px} .nav{gap:4px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">DR</div>
+  <div>
+    <div style="font-weight:700;font-size:1.05rem">DataRescue – Missão Segurança Digital</div>
+    <div class="small">Autor: Bruno Manuel • Tema: Perda e Recuperação de Dados</div>
+  </div>
+</div>
+
+<div class="container" role="main" aria-label="Interactive Book DataRescue">
+  <div class="nav" id="nav"></div>
+  <div class="content">
+    <!-- Chapters -->
+    <section id="cover" class="chapter" style="display:block">
+      <h1>Bem-vindo à Missão</h1>
+      <p>És o técnico responsável pelo Centro de Dados. Uma falha grave afetou vários sistemas. A tua missão: <strong>detetar, isolar e recuperar</strong> os dados com o mínimo de perda.</p>
+      <div class="summary">
+        <strong>O que vais aprender:</strong>
+        <ul>
+          <li>Tipos de perda de dados e causas.</li>
+          <li>Estratégias de backup e restauração.</li>
+          <li>Resposta a incidentes e verificação de integridade.</li>
+        </ul>
+      </div>
+      <div style="margin-top:14px">
+        <button class="btn" onclick="showChapter('c1')">Entrar na Missão</button>
+        <button class="secondary" onclick="showChapter('guide')">Como funciona</button>
+      </div>
+      <div class="progress" style="margin-top:12px"><i id="prog"></i></div>
+    </section>
+
+    <section id="guide" class="chapter" aria-label="Guia de uso">
+      <h2>Como usar este recurso</h2>
+      <p>Este Interactive Book contém capítulos com textos, quizzes interativos e uma simulação. Avança pelos capítulos usando os botões ou o menu.</p>
+      <ol>
+        <li>Lê o texto e vê a breve simulação visual (animação).</li>
+        <li>Resolve os quizzes em cada capítulo — obténs feedback imediato.</li>
+        <li>No fim, faz a autoavaliação para medir os teus conhecimentos.</li>
+      </ol>
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('cover')">Voltar</button>
+        <button class="btn" onclick="showChapter('c1')">Iniciar</button>
+      </div>
+    </section>
+
+    <section id="c1" class="chapter" aria-label="Capítulo 1 - O Incidente">
+      <h2>Capítulo 1 — O Incidente</h2>
+      <p>São 07h45 — o Centro de Dados sofreu uma falha. Sistemas de virtualização estão inacessíveis e várias aplicações não respondem. Tens de identificar a causa e aplicar o plano de recuperação.</p>
+      <div style="margin-top:10px">
+        <strong>Causas comuns de perda de dados</strong>
+        <ul>
+          <li>Falha de hardware</li>
+          <li>Erro humano</li>
+          <li>Ataque de ransomware</li>
+          <li>Falha eléctrica</li>
+        </ul>
+      </div>
+
+      <div class="quiz" id="q1">
+        <strong>Quiz 1 — Multiple Choice</strong>
+        <p>Qual das seguintes opções <strong>não</strong> é uma causa comum de perda de dados?</p>
+        <div><label><input type="radio" name="q1" value="A"> A) Falha de hardware</label></div>
+        <div><label><input type="radio" name="q1" value="B"> B) Erro humano</label></div>
+        <div><label><input type="radio" name="q1" value="C"> C) Atualização planeada e bem-sucedida</label></div>
+        <div><label><input type="radio" name="q1" value="D"> D) Ataque de ransomware</label></div>
+        <div style="margin-top:8px"><button class="btn" onclick="checkQ1()">Enviar resposta</button></div>
+        <div id="fb1" class="feedback" aria-live="polite"></div>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('cover')">Capa</button>
+        <button class="secondary" onclick="showChapter('c2')">Próximo capítulo</button>
+      </div>
+    </section>
+
+    <section id="c2" class="chapter" aria-label="Capítulo 2 - Estratégias de Backup">
+      <h2>Capítulo 2 — Estratégias de Backup</h2>
+      <p>A primeira linha de defesa é o <strong>backup</strong>. Tipos: total, incremental e diferencial. Frequência, armazenamento externo e testes de restauração são essenciais.</p>
+
+      <div style="margin-top:8px">
+        <strong>Ordena os passos de um processo de backup:</strong>
+        <ol id="steps">
+          <li draggable="true" data-id="1">Armazenar cópia em local seguro</li>
+          <li draggable="true" data-id="2">Definir periodicidade</li>
+          <li draggable="true" data-id="3">Testar o plano de recuperação</li>
+          <li draggable="true" data-id="4">Selecionar os dados críticos</li>
+        </ol>
+        <p class="small">Arrasta e solta para ordenar (desktop) — em telemóvel toca e segure para arrastar.</p>
+        <div style="margin-top:8px"><button class="btn" onclick="checkOrder()">Verificar ordem</button></div>
+        <div id="fb2" class="feedback"></div>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('c1')">Anterior</button>
+        <button class="secondary" onclick="showChapter('c3')">Simulação</button>
+      </div>
+    </section>
+
+    <section id="c3" class="chapter" aria-label="Capítulo 3 - Simulação">
+      <h2>Capítulo 3 — Simulação: Recuperar o Sistema</h2>
+      <p>Durante a simulação, um ataque cifrou ficheiros do servidor. Tens de decidir a resposta que minimiza perda e tempo de recuperação.</p>
+      <div style="margin-top:12px">
+        <!-- Simple visual simulation (animated CSS) -->
+        <div style="border:1px solid #eef3f8;padding:12px;border-radius:8px">
+          <div style="height:160px;display:flex;align-items:center;justify-content:center;flex-direction:column">
+            <div id="simBox" style="width:80%;height:56px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid #e6eef4">SERVIDOR: CRIPTOGRAFADO</div>
+            <div style="margin-top:8px"><button class="btn" onclick="simulateAttack()">Executar simulação</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" id="q3" style="margin-top:12px">
+        <strong>Decisão</strong>
+        <p>O que deve ser feito <strong>primeiro</strong> ao detetar um ataque ativo?</p>
+        <div><label><input type="radio" name="q3" value="A"> A) Reiniciar o servidor</label></div>
+        <div><label><input type="radio" name="q3" value="B"> B) Desligar o servidor e isolar a rede</label></div>
+        <div><label><input type="radio" name="q3" value="C"> C) Apagar todos os ficheiros cifrados</label></div>
+        <div><label><input type="radio" name="q3" value="D"> D) Enviar e-mail ao fornecedor de antivírus</label></div>
+        <div style="margin-top:8px"><button class="btn" onclick="checkQ3()">Enviar decisão</button></div>
+        <div id="fb3" class="feedback"></div>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('c2')">Anterior</button>
+        <button class="secondary" onclick="showChapter('c4')">Recuperação</button>
+      </div>
+    </section>
+
+    <section id="c4" class="chapter" aria-label="Capítulo 4 - Recuperação e Verificação">
+      <h2>Capítulo 4 — Recuperação e Verificação</h2>
+      <p>Após restaurar, verifica a integridade usando checksums, antivírus e validação de logs. Só depois reintroduz o serviço em produção.</p>
+
+      <div class="quiz" id="q4" style="margin-top:8px">
+        <strong>Preenche a lacuna</strong>
+        <p>Para garantir a integridade, o técnico deve comparar os ficheiros com os seus ______ originais.</p>
+        <input type="text" id="ans4" placeholder="escreve aqui..." style="padding:8px;border-radius:6px;border:1px solid #dfeaf0;width:60%"/>
+        <div style="margin-top:8px"><button class="btn" onclick="checkQ4()">Verificar</button></div>
+        <div id="fb4" class="feedback"></div>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('c3')">Anterior</button>
+        <button class="secondary" onclick="showChapter('c5')">Autoavaliação</button>
+      </div>
+    </section>
+
+    <section id="c5" class="chapter" aria-label="Capítulo 5 - Autoavaliação">
+      <h2>Capítulo 5 — Autoavaliação</h2>
+      <p>Resumo: aplica o que aprendeste nos quizzes abaixo.</p>
+
+      <div class="quiz" id="final">
+        <strong>Prova final — 5 perguntas</strong>
+        <ol>
+          <li>
+            <p>Qual é o objetivo do backup incremental?</p>
+            <label><input type="radio" name="f1" value="A"> A) Copiar todos os ficheiros sempre</label><br>
+            <label><input type="radio" name="f1" value="B"> B) Copiar apenas os ficheiros alterados desde o último backup</label>
+          </li>
+          <li>
+            <p>O que fazer primeiro durante um ataque ativo?</p>
+            <label><input type="radio" name="f2" value="A"> A) Desligar cron jobs</label><br>
+            <label><input type="radio" name="f2" value="B"> B) Isolar o servidor</label>
+          </li>
+          <li>
+            <p>Por que razão se deve testar backups regularmente?</p>
+            <label><input type="radio" name="f3" value="A"> A) Para garantir que podem ser restaurados com sucesso</label><br>
+            <label><input type="radio" name="f3" value="B"> B) Para reduzir o espaço em disco</label>
+          </li>
+          <li>
+            <p>O que é um checksum?</p>
+            <label><input type="radio" name="f4" value="A"> A) Valor usado para verificar integridade de ficheiros</label><br>
+            <label><input type="radio" name="f4" value="B"> B) Uma cópia de segurança</label>
+          </li>
+          <li>
+            <p>Em que situações se deve ativar o plano de recuperação?</p>
+            <label><input type="radio" name="f5" value="A"> A) Quando há perda total ou corrupção crítica de dados</label><br>
+            <label><input type="radio" name="f5" value="B"> B) Apenas quando se faz manutenção planeada</label>
+          </li>
+        </ol>
+        <div style="margin-top:8px"><button class="btn" onclick="checkFinal()">Enviar prova</button></div>
+        <div id="fbFinal" class="feedback"></div>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" onclick="showChapter('c4')">Anterior</button>
+        <button class="btn" onclick="finish()">Terminar missão</button>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="small">Versão offline para LUMI/Moodle — Autor: Bruno Manuel</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Navigation
+const chapters = ['cover','guide','c1','c2','c3','c4','c5'];
+const nav = document.getElementById('nav');
+chapters.forEach(id=>{
+  const b = document.createElement('button');
+  b.textContent = id==='cover'?'Capa':(id==='guide'?'Guia':id.toUpperCase());
+  b.onclick = ()=>showChapter(id);
+  nav.appendChild(b);
+});
+
+function showChapter(id){
+  chapters.forEach(c=>document.getElementById(c).style.display='none');
+  document.getElementById(id).style.display='block';
+  updateProgress(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(id){
+  const idx = chapters.indexOf(id);
+  const p = Math.round((idx+1)/chapters.length*100);
+  document.getElementById('prog').style.width = p + '%';
+}
+
+// Quiz checks
+function checkQ1(){
+  const els = document.getElementsByName('q1');
+  let val = null;
+  for(const e of els) if(e.checked) val = e.value;
+  const fb = document.getElementById('fb1');
+  if(!val){ fb.innerHTML = '<div class="wrong">Escolhe uma opção.</div>'; return;}
+  if(val==='C'){
+    fb.innerHTML = '<div class="correct">Correto — uma atualização bem-sucedida não causa perda de dados.</div>';
+  } else {
+    fb.innerHTML = '<div class="wrong">Resposta incorreta. A resposta certa é C) Atualização planeada e bem-sucedida.</div>';
+  }
+}
+
+// Drag and drop ordering
+let dragSrcEl = null;
+const list = document.getElementById('steps');
+Array.from(list.children).forEach(li=>{
+  li.addEventListener('dragstart', function(e){
+    dragSrcEl = this;
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  li.addEventListener('dragover', function(e){
+    e.preventDefault();
+    return false;
+  });
+  li.addEventListener('drop', function(e){
+    if(dragSrcEl !== this){
+      const nodes = Array.from(list.children);
+      const srcIndex = nodes.indexOf(dragSrcEl);
+      const tgtIndex = nodes.indexOf(this);
+      if(srcIndex < tgtIndex) this.after(dragSrcEl);
+      else this.before(dragSrcEl);
+    }
+    return false;
+  });
+});
+
+function checkOrder(){
+  const correct = ['4','2','1','3']; // data-id order expected: Select(4)->Define(2)->Store(1)->Test(3)
+  const current = Array.from(list.children).map(li=>li.getAttribute('data-id'));
+  const fb = document.getElementById('fb2');
+  if(JSON.stringify(current)===JSON.stringify(correct)){
+    fb.innerHTML = '<div class="correct">Boa! A ordem está correta.</div>';
+  } else {
+    fb.innerHTML = '<div class="wrong">Ordem incorreta. Ordem correta: Selecionar dados → Definir periodicidade → Armazenar cópia → Testar plano.</div>';
+  }
+}
+
+// Simulation
+function simulateAttack(){
+  const box = document.getElementById('simBox');
+  box.textContent = 'SERVIDOR: ISOLANDO...';
+  box.style.background = '#fff8e6';
+  setTimeout(()=>{ box.textContent = 'SERVIDOR: CRIPTOGRAFADO'; box.style.background='#fff' }, 2200);
+}
+
+function checkQ3(){
+  const els = document.getElementsByName('q3');
+  let val = null;
+  for(const e of els) if(e.checked) val = e.value;
+  const fb = document.getElementById('fb3');
+  if(!val){ fb.innerHTML = '<div class="wrong">Escolhe uma opção.</div>'; return;}
+  if(val==='B'){
+    fb.innerHTML = '<div class="correct">Correto — isolar o servidor impede a propagação.</div>';
+  } else {
+    fb.innerHTML = '<div class="wrong">Resposta incorreta. A resposta certa é B) Desligar o servidor e isolar a rede.</div>';
+  }
+}
+
+function checkQ4(){
+  const v = document.getElementById('ans4').value.trim().toLowerCase();
+  const fb = document.getElementById('fb4');
+  if(!v){ fb.innerHTML = '<div class="wrong">Escreve uma resposta.</div>'; return;}
+  if(v.includes('hash') || v.includes('checksum') || v.includes('sumário') || v.includes('sumarios')){
+    fb.innerHTML = '<div class="correct">Correto — hashes/checksums são usados para verificar integridade.</div>';
+  } else {
+    fb.innerHTML = '<div class="wrong">Resposta esperada: hashes / checksums / sumários de verificação.</div>';
+  }
+}
+
+function checkFinal(){
+  const answers = {f1:'B',f2:'B',f3:'A',f4:'A',f5:'A'};
+  let correct = 0;
+  for(const k in answers){
+    const els = document.getElementsByName(k);
+    for(const e of els) if(e.checked && e.value===answers[k]) correct++;
+  }
+  const fb = document.getElementById('fbFinal');
+  fb.innerHTML = '<div class="summary">Acertaste ' + correct + ' de 5.</div>';
+}
+
+function finish(){
+  alert('Missão concluída! Parabéns — revisa a secção de recursos e submete no Moodle.');
+  showChapter('cover');
+}
+
+// initialize progress
+updateProgress('cover');
+</script>
+
+</body>
+</html>
